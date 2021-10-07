@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-  FormHelperText,
-} from "@material-ui/core";
+import { Grid, Box, Typography, Button, FormControl, TextField, FormHelperText } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 
 const Login = (props) => {
@@ -47,24 +39,12 @@ const Login = (props) => {
           <Grid>
             <Grid>
               <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
+                <TextField aria-label="username" label="Username" name="username" type="text" required />
               </FormControl>
             </Grid>
             <Grid>
               <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
+                <TextField label="E-mail address" aria-label="e-mail address" type="email" name="email" required />
               </FormControl>
             </Grid>
             <Grid>
@@ -77,9 +57,7 @@ const Login = (props) => {
                   name="password"
                   required
                 />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
+                <FormHelperText>{formErrorMessage.confirmPassword}</FormHelperText>
               </FormControl>
             </Grid>
             <Grid>
@@ -92,9 +70,7 @@ const Login = (props) => {
                   name="confirmPassword"
                   required
                 />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
+                <FormHelperText>{formErrorMessage.confirmPassword}</FormHelperText>
               </FormControl>
             </Grid>
             <Button type="submit" variant="contained" size="large">
