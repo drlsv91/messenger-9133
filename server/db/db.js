@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 
-const db = new Sequelize(process.env.DATABASE_URL || "postgres://localhost:5432/messenger", {
+const db = new Sequelize(process.env.DATABASE_URL || "postgres://localhost:5433/messenger", {
     logging: false,
     host: "localhost",
-    username: "root",
+    username: "postgres",
     password: "root",
 });
 
