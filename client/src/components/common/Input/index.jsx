@@ -7,11 +7,10 @@ const Input = ({ label, name, type = "text", ...rest }) => {
   return (
     <TextField
       {...rest}
-      classes={{ root: classes.root }}
+      classes={{ root: classes.inputFieldRoot }}
       InputLabelProps={{
-        style: { fontSize: 12, fontWeight: "bold" },
+        style: { fontSize: 12, fontWeight: "bold", opacity: 0.5 },
         required: false,
-        classes: { root: classes.root },
       }}
       label={label}
       type={type}

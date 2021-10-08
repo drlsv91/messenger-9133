@@ -1,31 +1,44 @@
 import { makeStyles } from "@material-ui/core/styles";
+import authBgImage from "../assets/images/bg-img.png";
 
 export const authStyles = makeStyles((theme) => ({
     wrapper: {
-        border: "1px solid green",
         height: "700px",
         maxWidth: "1024px",
         margin: "auto",
     },
     container: {
-        border: "1px solid red",
         height: "100vh",
+        overflow: "hidden",
     },
     left: {
-        border: "1px solid red",
+        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.8),rgba(58, 141, 255, 0.8), rgba(58, 141, 255, 1)), url(${authBgImage})`,
+        color: "#fff",
         height: "100%",
-        width: "425px",
+        display: "none",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        "@media (min-width:768px)": {
+            display: "flex",
+            maxWidth: "425px",
+            width: "40%",
+        },
     },
     right: {
-        width: "calc(100% - 430px)",
         height: "100%",
-        border: "1px solid blue",
+        width: "100%",
+        margin: "0 auto",
+        "@media (min-width:768px)": {
+            width: "50%",
+            maxWidth: "calc(100% - 340px)",
+        },
     },
     inputContainer: {
         width: "100%",
+        marginBottom: "2rem",
     },
     formContainer: {
-        border: "1px solid red",
         width: "80%",
         height: "calc(100% - 38px)",
         display: "flex",
@@ -33,19 +46,36 @@ export const authStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center",
         margin: "0 auto",
+        "@media (min-width:768px)": {
+            width: "70%",
+        },
     },
     top: {
-        border: "1px solid red",
-        alignSelf: "flex-start",
-        justifySelf: "flex-start",
+        marginTop: "1rem",
+        display: "flex",
+        justifyContent: "flex-end",
+        paddingRight: "1rem",
+        "@media (min-width:768px)": {
+            paddingRight: "0.8rem",
+            marginTop: "3rem",
+        },
     },
     formTitle: {
-        // border: "1px solid red",
         width: "100%",
         fontSize: "20px",
+        marginBottom: "1rem",
+        fontWeight: "bold",
     },
 
-    root: {
+    buttonOutline: {
+        boxShadow: "0 1px 7px 5px #f3f3f3",
+        marginLeft: "2rem",
+    },
+
+    inputFieldRoot: {
+        "& .MuiInput-underline:before": {
+            borderBottom: "2px solid #E9EEF2",
+        },
         "& .MuiInput-underline:after": {
             borderBottom: "1px solid #E9EEF2",
             color: "#E9EEF2",
@@ -57,78 +87,5 @@ export const authStyles = makeStyles((theme) => ({
             borderBottom: "2px solid #E9EEF2",
             color: "#E9EEF2",
         },
-    },
-    topDashboard: {
-        display: "grid",
-        gridTemplateColumns: "[col1-start] 1fr [col1-end col2-start] 2.6fr [col2-end]",
-        gap: "2rem",
-
-        "@media (max-width:768px)": {
-            gridTemplateColumns: "repeat(1, auto)",
-            gap: "2rem",
-        },
-    },
-
-    topLeftDashboard: {
-        display: "grid",
-        gridTemplateColumns: "repeat(1, auto)",
-        gap: "1rem",
-    },
-
-    topRightDashboard: {
-        backgroundColor: "#FFFFFF",
-        boxShadow: "0px 0px 12px #F2F4F9",
-        borderRadius: "10px",
-        padding: "1rem",
-    },
-
-    middleDashboard: {
-        display: "grid",
-        gridTemplateColumns: "[col1-start] 2.5fr [col1-end col2-start] 1.2fr [col2-end]",
-        gap: "2rem",
-
-        "@media (max-width:768px)": {
-            gridTemplateColumns: "repeat(1, auto)",
-            gap: "2rem",
-        },
-    },
-
-    middleLeftDashboard: {
-        backgroundColor: "#FFFFFF",
-        boxShadow: "0px 0px 12px #F2F4F9",
-        borderRadius: "10px",
-        padding: "1rem",
-    },
-
-    middleRightDashboard: {
-        backgroundColor: "#FFFFFF",
-        boxShadow: "0px 0px 12px #F2F4F9",
-        borderRadius: "10px",
-        padding: "1rem",
-    },
-
-    bottomDashboard: {
-        display: "grid",
-        gridTemplateColumns: "[col1-start] 2fr [col1-end col2-start] 2.5fr [col2-end]",
-        gap: "2rem",
-
-        "@media (max-width:768px)": {
-            gridTemplateColumns: "repeat(1, auto)",
-            gap: "2rem",
-        },
-    },
-
-    bottomLeftDashboard: {
-        backgroundColor: "#FFFFFF",
-        boxShadow: "0px 0px 12px #F2F4F9",
-        borderRadius: "10px",
-        padding: "1rem",
-    },
-
-    bottomRightDashboard: {
-        backgroundColor: "#FFFFFF",
-        boxShadow: "0px 0px 12px #F2F4F9",
-        borderRadius: "10px",
-        padding: "1rem",
     },
 }));

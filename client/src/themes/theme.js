@@ -15,15 +15,18 @@ export const theme = createTheme({
             input: {
                 fontSize: 12,
                 fontWeight: "bold",
-                borderBottom: "2px solid #E9EEF2",
-                opacity: 0.5,
+                // borderBottom: "2px solid #f1f1f1",
             },
         },
         MuiButton: {
             root: {
-                borderRadius: 2,
-                padding: "0.35rem 1.5rem",
+                borderRadius: 3,
+                // padding: "0.35rem 1.5rem",
                 fontSize: "12px",
+                "@media (min-width:768px)": {
+                    minWidth: "6rem",
+                    minHeight: "2.5rem",
+                },
             },
         },
     },

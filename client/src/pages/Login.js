@@ -1,15 +1,8 @@
 import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-} from "@material-ui/core";
-import { login } from "./store/utils/thunkCreators";
+import { Grid, Box, Typography, Button, FormControl, TextField } from "@material-ui/core";
+import { login } from "../store/utils/thunkCreators";
 
 const Login = (props) => {
   const history = useHistory();
@@ -38,21 +31,11 @@ const Login = (props) => {
           <Grid>
             <Grid>
               <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
+                <TextField aria-label="username" label="Username" name="username" type="text" />
               </FormControl>
             </Grid>
             <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
+              <TextField label="password" aria-label="password" type="password" name="password" />
             </FormControl>
             <Grid>
               <Button type="submit" variant="contained" size="large">
