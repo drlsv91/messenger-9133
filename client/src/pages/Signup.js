@@ -43,7 +43,7 @@ const Signup = ({ user, register }) => {
           <Typography variant="h6">with any language</Typography>
         </Grid>
         {/* right */}
-        <Grid item className={classes.right} md={7} xl={8} xs={12}>
+        <Grid item className={classes.right} md={7} xl={8} xs={11}>
           <Grid container item justifyContent="center" alignItems="center" className={classes.top}>
             <Typography color="inherit" variant="caption" style={{ opacity: 0.5 }}>
               Already have an account?

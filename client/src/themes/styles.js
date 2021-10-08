@@ -27,12 +27,14 @@ export const authStyles = makeStyles((theme) => ({
         },
     },
     right: {
+        boxShadow: "1px 0px 5px 1px #e7e7e7",
+        backgroundColor: "#fff",
         height: "100%",
         width: "100%",
         margin: "0 auto",
         "@media (min-width:768px)": {
             width: "50%",
-            maxWidth: "calc(100% - 340px)",
+            maxWidth: "calc(100% - 320px)",
         },
     },
     inputContainer: {
