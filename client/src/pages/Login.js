@@ -1,8 +1,13 @@
 import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Box, Typography, Button, FormControl, TextField } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import { login } from "../store/utils/thunkCreators";
+import Input from "../components/common/Input";
+import Form from "../components/common/Form";
+import { authStyles } from "../themes/styles";
+import bubble from "../assets/images/bubble.svg";
+import FormControl from "../components/common/Form/FormControl";
 
 const Login = (props) => {
   const history = useHistory();
@@ -19,32 +24,59 @@ const Login = (props) => {
   if (user.id) {
     return <Redirect to="/home" />;
   }
-
+  const classes = authStyles();
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
+    <Grid container justifyContent="center" alignItems="center" direction="column" className={classes.container}>
+      <Grid container wrap="nowrap" justifyContent="space-between" alignItems="center" className={classes.wrapper}>
+        {/* left */}
+        <Grid item className={classes.left} md={5} xl={4} xs={5}>
+          <img style={{ width: "3.85rem", marginBottom: "2rem" }} src={bubble} alt="chat" />
+          <Typography variant="h6">Converse With anyone</Typography>
+          <Typography variant="h6">with any language</Typography>
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField aria-label="username" label="Username" name="username" type="text" />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField label="password" aria-label="password" type="password" name="password" />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
+        {/* right */}
+        <Grid item className={classes.right} md={7} xl={8} xs={12}>
+          <Grid container item justifyContent="center" alignItems="center" className={classes.top}>
+            <Typography color="inherit" variant="caption" style={{ opacity: 0.5 }}>
+              Don't have an account?
+            </Typography>
+            <Button color="primary" className={classes.buttonOutline} onClick={() => history.push("/register")}>
+              Create account
+            </Button>
           </Grid>
-        </form>
-      </Box>
+
+          <Grid container justifyContent="center" alignItems="center" className={classes.formContainer}>
+            <Typography className={classes.formTitle}>Welcome back!</Typography>
+            <Form onSubmit={handleLogin}>
+              <Grid>
+                <FormControl>
+                  <Input label="E-mail address" aria-label="e-mail address" type="email" name="email" required />
+                </FormControl>
+
+                <FormControl>
+                  <Input
+                    aria-label="password"
+                    label="Password"
+                    type="password"
+                    inputProps={{ minLength: 6 }}
+                    name="password"
+                    required
+                  />
+                  <Button className={classes.forgetPasswordBtn} color="primary">
+                    Forgot?
+                  </Button>
+                </FormControl>
+
+                <Grid container justifyContent="center" alignItems="center" style={{ marginTop: 10 }}>
+                  <Button type="submit" variant="contained" disableElevation color="primary">
+                    Login
+                  </Button>
+                </Grid>
+              </Grid>
+            </Form>
+          </Grid>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

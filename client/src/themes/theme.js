@@ -13,9 +13,10 @@ export const theme = createTheme({
     overrides: {
         MuiInput: {
             input: {
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: "bold",
-                // borderBottom: "2px solid #f1f1f1",
+                paddingLeft: "5px",
+                paddingBottom: "12px",
             },
         },
         MuiButton: {

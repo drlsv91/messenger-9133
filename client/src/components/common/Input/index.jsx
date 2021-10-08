@@ -9,7 +9,7 @@ const Input = ({ label, name, type = "text", ...rest }) => {
       {...rest}
       classes={{ root: classes.inputFieldRoot }}
       InputLabelProps={{
-        style: { fontSize: 12, fontWeight: "bold", opacity: 0.5 },
+        style: { fontSize: 14, fontWeight: "bold", opacity: 0.5 },
         required: false,
       }}
       label={label}

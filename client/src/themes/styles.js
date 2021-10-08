@@ -19,6 +19,7 @@ export const authStyles = makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        paddingBottom: "5rem",
         "@media (min-width:768px)": {
             display: "flex",
             maxWidth: "425px",
@@ -35,12 +36,14 @@ export const authStyles = makeStyles((theme) => ({
         },
     },
     inputContainer: {
+        position: "relative",
         width: "100%",
         marginBottom: "2rem",
     },
     formContainer: {
         width: "80%",
-        height: "calc(100% - 38px)",
+        height: "calc(100% - 10rem)",
+        padding: "0!important",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -57,19 +60,28 @@ export const authStyles = makeStyles((theme) => ({
         paddingRight: "1rem",
         "@media (min-width:768px)": {
             paddingRight: "0.8rem",
-            marginTop: "3rem",
+            marginTop: "2rem",
         },
     },
     formTitle: {
         width: "100%",
         fontSize: "20px",
-        marginBottom: "1rem",
+        marginBottom: "2rem",
         fontWeight: "bold",
     },
 
     buttonOutline: {
         boxShadow: "0 1px 7px 5px #f3f3f3",
         marginLeft: "2rem",
+        fontSize: "10px",
+    },
+    forgetPasswordBtn: {
+        position: "absolute",
+        right: 0,
+        bottom: 0,
+        minWidth: "inherit",
+        minHeight: "inherit",
+        fontSize: 12,
     },
 
     inputFieldRoot: {
