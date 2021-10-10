@@ -17,6 +17,9 @@ const Signup = ({ user, register }) => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    console.log(event.target.email);
+    console.log(event.target.password);
+    console.log(event.target.username);
     const username = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;

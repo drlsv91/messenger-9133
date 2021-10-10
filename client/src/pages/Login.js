@@ -39,7 +39,7 @@ const Login = (props) => {
             <Form onSubmit={handleLogin}>
               <Grid>
                 <FormControl>
-                  <Input label="E-mail address" aria-label="e-mail address" type="email" name="email" required />
+                  <Input label="User Name" aria-label="user name" name="username" required />
                 </FormControl>
 
                 <FormControl>
