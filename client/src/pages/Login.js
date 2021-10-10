@@ -1,17 +1,17 @@
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { login } from "../store/utils/thunkCreators";
 import Input from "../components/common/Input";
 import Form from "../components/common/Form";
 import { authStyles } from "../themes/styles";
-import bubble from "../assets/images/bubble.svg";
 import FormControl from "../components/common/Form/FormControl";
-import LeftSide from "../components/common/Form/LeftSide";
+import LeftSide from "./widget/FormLeftSide";
+import FormRightSideTop from "./widget/FormRightSideTop";
+import FormContainer from "./widget/FormContainer";
 
 const Login = (props) => {
-  const history = useHistory();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -33,17 +33,9 @@ const Login = (props) => {
         <LeftSide />
         {/* right */}
         <Grid item className={classes.right} md={7} xl={8} xs={11}>
-          <Grid container item justifyContent="center" alignItems="center" className={classes.top}>
-            <Typography color="inherit" variant="caption" style={{ opacity: 0.5 }}>
-              Don't have an account?
-            </Typography>
-            <Button color="primary" className={classes.buttonOutline} onClick={() => history.push("/register")}>
-              Create account
-            </Button>
-          </Grid>
+          <FormRightSideTop title=" Don't have an account?" gotoUrl="/register" buttonLabel="Create account" />
 
-          <Grid container justifyContent="center" alignItems="center" className={classes.formContainer}>
-            <Typography className={classes.formTitle}>Welcome back!</Typography>
+          <FormContainer title="Create an account.">
             <Form onSubmit={handleLogin}>
               <Grid>
                 <FormControl>
@@ -71,7 +63,7 @@ const Login = (props) => {
                 </Grid>
               </Grid>
             </Form>
-          </Grid>
+          </FormContainer>
         </Grid>
       </Grid>
     </Grid>

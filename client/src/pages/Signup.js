@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Typography, Button, FormHelperText } from "@material-ui/core";
+import { Grid, Button, FormHelperText } from "@material-ui/core";
 import { register } from "../store/utils/thunkCreators";
 import { authStyles } from "../themes/styles";
 import Input from "../components/common/Input";
 import Form from "../components/common/Form";
 import FormControl from "../components/common/Form/FormControl";
-import LeftSide from "../components/common/Form/LeftSide";
+import LeftSide from "./widget/FormLeftSide";
+import FormContainer from "./widget/FormContainer";
+import FormRightSideTop from "./widget/FormRightSideTop";
 
 const Signup = ({ user, register }) => {
   const classes = authStyles();
-  const history = useHistory();
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -40,17 +41,9 @@ const Signup = ({ user, register }) => {
         <LeftSide />
         {/* right */}
         <Grid item className={classes.right} md={7} xl={8} xs={11}>
-          <Grid container item justifyContent="center" alignItems="center" className={classes.top}>
-            <Typography color="inherit" variant="caption" style={{ opacity: 0.5 }}>
-              Already have an account?
-            </Typography>
-            <Button color="primary" className={classes.buttonOutline} onClick={() => history.push("/login")}>
-              Login
-            </Button>
-          </Grid>
+          <FormRightSideTop title="Already have an account?" gotoUrl="/login" buttonLabel="Login" />
 
-          <Grid container justifyContent="center" alignItems="center" className={classes.formContainer}>
-            <Typography className={classes.formTitle}>Create an account.</Typography>
+          <FormContainer title="Create an account.">
             <Form onSubmit={handleRegister}>
               <Grid>
                 <FormControl>
@@ -91,7 +84,7 @@ const Signup = ({ user, register }) => {
                 </Grid>
               </Grid>
             </Form>
-          </Grid>
+          </FormContainer>
         </Grid>
       </Grid>
     </Grid>

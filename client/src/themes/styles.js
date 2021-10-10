@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import authBgImage from "../assets/images/bg-img.png";
 
 export const authStyles = makeStyles((theme) => ({
     wrapper: {
@@ -11,8 +10,11 @@ export const authStyles = makeStyles((theme) => ({
         height: "100vh",
         overflow: "hidden",
     },
-    left: {
-        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.8), rgba(134, 185, 255, 0.8)), url(${authBgImage})`,
+
+    inputLabel: { fontSize: 14, fontWeight: "bold", opacity: 0.5 },
+    formLeftContainer: {
+        backgroundImage: (props) =>
+            `linear-gradient(to bottom, rgba(58, 141, 255, 0.8), rgba(134, 185, 255, 0.8)), url(${props.bgImage})`,
         color: "#fff",
         height: "100%",
         display: "none",
