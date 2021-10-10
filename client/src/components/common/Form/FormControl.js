@@ -6,7 +6,7 @@ const CustomFormControl = ({ children, ...rest }) => {
   const classes = authStyles();
   return (
     <Grid className={classes.inputContainer}>
-      <FormControl style={{ width: "100%" }} {...rest}>
+      <FormControl className={classes.formControl} {...rest}>
         {children}
       </FormControl>
     </Grid>

@@ -10,7 +10,12 @@ export const authStyles = makeStyles((theme) => ({
         height: "100vh",
         overflow: "hidden",
     },
-
+    formControl: {
+        width: "100%",
+    },
+    form: {
+        width: "100%",
+    },
     inputLabel: { fontSize: 14, fontWeight: "bold", opacity: 0.5 },
     formLeftContainer: {
         backgroundImage: (props) =>
