@@ -8,6 +8,7 @@ import Form from "../components/common/Form";
 import { authStyles } from "../themes/styles";
 import bubble from "../assets/images/bubble.svg";
 import FormControl from "../components/common/Form/FormControl";
+import LeftSide from "../components/common/Form/LeftSide";
 
 const Login = (props) => {
   const history = useHistory();
@@ -29,11 +30,7 @@ const Login = (props) => {
     <Grid container justifyContent="center" alignItems="center" direction="column" className={classes.container}>
       <Grid container wrap="nowrap" justifyContent="space-between" alignItems="center" className={classes.wrapper}>
         {/* left */}
-        <Grid item className={classes.left} md={5} xl={4} xs={5}>
-          <img style={{ width: "3.85rem", marginBottom: "2rem" }} src={bubble} alt="chat" />
-          <Typography variant="h6">Converse With anyone</Typography>
-          <Typography variant="h6">with any language</Typography>
-        </Grid>
+        <LeftSide />
         {/* right */}
         <Grid item className={classes.right} md={7} xl={8} xs={11}>
           <Grid container item justifyContent="center" alignItems="center" className={classes.top}>

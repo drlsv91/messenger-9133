@@ -12,7 +12,7 @@ export const authStyles = makeStyles((theme) => ({
         overflow: "hidden",
     },
     left: {
-        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.8),rgba(58, 141, 255, 0.8), rgba(58, 141, 255, 1)), url(${authBgImage})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.8), rgba(134, 185, 255, 0.8)), url(${authBgImage})`,
         color: "#fff",
         height: "100%",
         display: "none",
@@ -75,7 +75,6 @@ export const authStyles = makeStyles((theme) => ({
     buttonOutline: {
         boxShadow: "0 1px 7px 5px #f3f3f3",
         marginLeft: "2rem",
-        fontSize: "10px",
     },
     forgetPasswordBtn: {
         position: "absolute",
@@ -91,7 +90,6 @@ export const authStyles = makeStyles((theme) => ({
             borderBottom: "2px solid #E9EEF2",
         },
         "& .MuiInput-underline:after": {
-            borderBottom: "1px solid #E9EEF2",
             color: "#E9EEF2",
         },
         "& .MuiFormLabel-root.Mui-focused": {

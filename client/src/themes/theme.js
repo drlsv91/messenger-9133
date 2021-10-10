@@ -22,11 +22,11 @@ export const theme = createTheme({
         MuiButton: {
             root: {
                 borderRadius: 3,
-                // padding: "0.35rem 1.5rem",
-                fontSize: "12px",
+                fontSize: "13px",
+                fontWeight: "bold",
                 "@media (min-width:768px)": {
-                    minWidth: "6rem",
-                    minHeight: "2.5rem",
+                    minWidth: "8.5rem",
+                    minHeight: "3rem",
                 },
             },
         },
