@@ -26,9 +26,6 @@ const ActiveChat = (props) => {
 
   const conversation =
     conversations.find((conversation) => conversation.otherUser.username === activeConversation) || {};
-  // const { user } = props;
-  // const conversation = props.conversation || {};
-  console.log("conversation =", conversation);
   return (
     <Box className={classes.root}>
       {" "}
