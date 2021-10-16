@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, IconButton, ImageList, ImageListItem, Box } from "@material-ui/core";
+import {
+  FormControl,
+  FilledInput,
+  IconButton,
+  ImageList,
+  ImageListItem,
+  Box,
+  CircularProgress,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage, uploadImage } from "../../store/utils/thunkCreators";
@@ -54,7 +62,13 @@ const useStyles = makeStyles(() => ({
     marginBottom: "2rem",
     position: "absolute",
     top: 100,
-    // bottom:20
+  },
+  loaderContainer: {
+    position: "absolute",
+    top: "50%",
+    left: 5,
+    bottom: 0,
+    transform: "translateY(-50%)",
   },
 }));
 
@@ -131,6 +145,11 @@ const Input = (props) => {
           <IconButton color="secondary" aria-label="upload image" component="label" className={classes.uploadButton}>
             {renderAttachment(<FileCopy />, handleUploadImage, uploading)}
           </IconButton>
+        )}
+        {uploading && (
+          <Box className={classes.loaderContainer}>
+            <CircularProgress color="secondary" />
+          </Box>
         )}
       </FormControl>
 

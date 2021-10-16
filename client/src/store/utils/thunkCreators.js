@@ -1,6 +1,7 @@
 import axios from "axios";
 import socket from "../../socket";
-import { CLOUDINARY_PUBLIC_URL, getSortedMessages } from "../../utils/constants";
+import moment from "moment";
+import { CLOUDINARY_PUBLIC_URL } from "../../utils/constants";
 import { gotConversations, addConversation, setNewMessage, setSearchedUsers } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
@@ -135,4 +136,12 @@ export const uploadImage = async(formData) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const getSortedMessages = (messages) => {
+    if (!Array.isArray(messages) || messages.length === 0) return messages;
+
+    return messages.sort((prev, next) => {
+        return moment.utc(prev.createdAt).diff(next.createdAt);
+    });
 };
