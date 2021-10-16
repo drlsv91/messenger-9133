@@ -1,39 +1,69 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput, IconButton, ImageList, ImageListItem, Grid } from "@material-ui/core";
+import { FormControl, FilledInput, IconButton, ImageList, ImageListItem,  Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage, uploadImage } from "../../store/utils/thunkCreators";
-import { AttachFile } from "@material-ui/icons";
+import { Add, FileCopy } from "@material-ui/icons";
 
 const useStyles = makeStyles(() => ({
   root: {
     justifySelf: "flex-end",
-    marginTop: 15,
-  },
-  formControl: {
     position: "relative",
+    marginTop: 15,
+
+  },
+  formControl:{
+    position: "relative",
+    height: 70,
+    marginBottom: 20,
+
   },
   imageList: {
-    position: "absolute",
-    zIndex: 1,
+    display:'flex',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  image: {
-    height: 50,
-    width: 150,
-    objectFit: "contain",
+  imageListItem: {
+    margin:'0 0.85rem',
+    width: '50px !important',
+    height: '50px !important',
+  },
+  image:{
+  width:'100%',
+  height:'100%',
+  objectFit: "cover",
+  },
+  addBtn:{
+    width: '50px !important',
+    height: '50px !important',
   },
   input: {
-    height: 70,
+    height: "100%",
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
-    marginBottom: 20,
   },
-  iconButton: {
+  uploadButton: {
     position: "absolute",
-    top: 0,
+    top: '50%',
+    right:5,
+    bottom:0,
+    transform: "translateY(-50%)",
+
   },
+  container:{
+    width:'100%',
+    borderTop:'1px solid #ccc',
+    paddingTop:15,
+    marginBottom:'2rem',
+    position:'absolute',
+    top:100,
+    // bottom:20
+  }
 }));
 
+const canshowAttachButton =(images =[])=>{
+return images.length === 0
+}
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
@@ -49,6 +79,7 @@ const Input = (props) => {
     try {
       setUploading(true);
       const data = await uploadImage(formData);
+      if(!data) throw new Error("Something went wrong");
       console.log(data);
       setImagesUrl((urls) => {
         urls.push(data.url);
@@ -76,23 +107,18 @@ const Input = (props) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
+      attachments: imagesUrl,
     };
 
     await postMessage(reqBody);
+    setImagesUrl([]);
     setText("");
   };
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel className={classes.formControl}>
-        <ImageList cols={3} rowHeight={100} className={classes.imageList}>
-          {imagesUrl.length > 0 &&
-            imagesUrl.map((url) => (
-              <ImageListItem key={url} className={classes.imageListItem}>
-                <img src={url} alt="upload" className={classes.image} />
-              </ImageListItem>
-            ))}
-        </ImageList>
+          
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -101,12 +127,29 @@ const Input = (props) => {
           name="text"
           onChange={handleChange}
         />
-
-        <IconButton color="primary" aria-label="upload image" component="label" className={classes.uploadButton}>
-          <AttachFile />
+        {canshowAttachButton(imagesUrl) && <IconButton color="secondary" aria-label="upload image" component="label" className={classes.uploadButton}>
+          <FileCopy />
           <input type="file" hidden onChange={handleUploadImage} />
-        </IconButton>
+        </IconButton>}
+        
       </FormControl>
+
+      {imagesUrl.length > 0 &&
+      <Box className={classes.container}>
+        <ImageList cols={3} rowHeight={100} className={classes.imageList}>
+            {imagesUrl.map((url) => (
+              <ImageListItem key={url} className={classes.imageListItem}>
+                <img src={url} alt="upload" className={classes.image} />
+              </ImageListItem>
+            ))}
+            <IconButton aria-label="upload image" component="label" className={classes.addBtn}>
+              <Add/>
+              <input type="file" hidden onChange={handleUploadImage} />
+            </IconButton>
+        </ImageList>
+
+      </Box>
+          }
     </form>
   );
 };
