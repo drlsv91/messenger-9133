@@ -1,12 +1,12 @@
 import axios from "axios";
 import socket from "../../socket";
-import { CLOUDINARY_PUBLIC_URL, getSortedMessages } from "../../utils/constants";
+import { getSortedMessages } from "../../utils/constants";
 import { gotConversations, addConversation, setNewMessage, setSearchedUsers } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
 axios.interceptors.request.use(async function(config) {
     const token = await localStorage.getItem("messenger-token");
-    if (config.url !== CLOUDINARY_PUBLIC_URL) config.headers["x-access-token"] = token;
+    config.headers["x-access-token"] = token;
 
     return config;
 });
@@ -121,18 +121,5 @@ export const searchUsers = (searchTerm) => async(dispatch) => {
         dispatch(setSearchedUsers(data));
     } catch (error) {
         console.error(error);
-    }
-};
-
-export const uploadImage = async(formData) => {
-    try {
-        const { data } = await axios({
-            url: CLOUDINARY_PUBLIC_URL,
-            method: "POST",
-            data: formData,
-        });
-        return data;
-    } catch (error) {
-        console.log(error);
     }
 };

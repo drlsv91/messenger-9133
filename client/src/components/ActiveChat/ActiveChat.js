@@ -25,20 +25,19 @@ const getActiveConversation = (conversations, activeConversation)=>{
 }
 const ActiveChat = (props) => {
   const classes = useStyles();
-  console.log("props =", props);
   const { user } = props;
   const conversation = getActiveConversation(props.conversations, props.activeConversation)
   return (
     <Box className={classes.root}>
       {conversation.otherUser && (
         <>
-          <Header username={conversation.otherUser.username} online={conversation.otherUser.online || false} />{" "}
+          <Header username={conversation.otherUser.username} online={conversation.otherUser.online || false} />
           <Box className={classes.chatContainer}>
-            <Messages messages={conversation.messages} otherUser={conversation.otherUser} userId={user.id} />{" "}
-            <Input otherUser={conversation.otherUser} conversationId={conversation.id} user={user} />{" "}
+            <Messages messages={conversation.messages} otherUser={conversation.otherUser} userId={user.id} />
+            <Input otherUser={conversation.otherUser} conversationId={conversation.id} user={user} />
           </Box>
         </>
-      )}{" "}
+      )}
     </Box>
   );
 };
