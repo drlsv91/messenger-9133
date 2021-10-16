@@ -9,8 +9,8 @@ const useStyles = makeStyles(() => ({
   },
   imageListItem: {
     marginLeft: "0.3rem",
-    width: "173px !important",
-    height: "150px !important",
+    width: (props) => `${props.imageLength > 1 ? 100 : 173}px !important`,
+    height: (props) => `${props.imageLength > 1 ? 100 : 150}px !important`,
   },
   image: {
     borderRadius: (props) => `10px 10px ${props.right}px ${props.left}px`,
@@ -58,7 +58,12 @@ const MessageWithImage = ({
   timeContent,
   others = { leftRadius: 0, rightRadius: 10 },
 }) => {
-  const classes = useStyles({ direction, left: others.leftRadius, right: others.rightRadius });
+  const classes = useStyles({
+    direction,
+    left: others.leftRadius,
+    right: others.rightRadius,
+    imageLength: images.length,
+  });
   if (!images) return null;
   return renderMessageWithImage(classes, images, textContent, timeContent, images.length === 1);
 };
