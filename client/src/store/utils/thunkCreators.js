@@ -1,11 +1,12 @@
 import axios from "axios";
 import socket from "../../socket";
+import { CLOUDINARY_PUBLIC_URL, getSortedMessages } from "../../utils/constants";
 import { gotConversations, addConversation, setNewMessage, setSearchedUsers } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
 axios.interceptors.request.use(async function(config) {
     const token = await localStorage.getItem("messenger-token");
-    config.headers["x-access-token"] = token;
+    if (config.url !== CLOUDINARY_PUBLIC_URL) config.headers["x-access-token"] = token;
 
     return config;
 });
@@ -62,12 +63,22 @@ export const logout = (id) => async(dispatch) => {
     }
 };
 
-// CONVERSATIONS THUNK CREATORS
+const getSortedConversations = (coversations) => {
+    return coversations.map((data) => {
+        const newData = {...data };
+        if (newData.messages && newData.messages.length > 0) {
+            newData.messages = getSortedMessages(newData.messages);
+        }
+        return newData;
+    });
+};
 
+// CONVERSATIONS THUNK CREATORS
 export const fetchConversations = () => async(dispatch) => {
     try {
         const { data } = await axios.get("/api/conversations");
-        dispatch(gotConversations(data));
+        const sortData = getSortedConversations(data);
+        dispatch(gotConversations(sortData));
     } catch (error) {
         console.error(error);
     }
@@ -110,5 +121,18 @@ export const searchUsers = (searchTerm) => async(dispatch) => {
         dispatch(setSearchedUsers(data));
     } catch (error) {
         console.error(error);
+    }
+};
+
+export const uploadImage = async(formData) => {
+    try {
+        const { data } = await axios({
+            url: CLOUDINARY_PUBLIC_URL,
+            method: "POST",
+            data: formData,
+        });
+        return data;
+    } catch (error) {
+        console.log(error);
     }
 };
