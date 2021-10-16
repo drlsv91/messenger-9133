@@ -9,7 +9,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexGrow: 8,
     flexDirection: "column",
-    width: "100%",
+    "@media (min-width:768px)": {
+      width: "100%",
+    },
   },
   chatContainer: {
     marginLeft: 41,

@@ -11,7 +11,9 @@ import { clearOnLogout } from "../store/index";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
-    flexWrap: "nowrap",
+    "@media (min-width:768px)": {
+      flexWrap: "nowrap",
+    },
   },
 }));
 

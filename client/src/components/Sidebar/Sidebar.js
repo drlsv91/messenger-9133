@@ -9,7 +9,9 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 21,
     paddingRight: 21,
     flexGrow: 1,
-    width: "30%",
+    "@media (min-width:768px)": {
+      width: "30%",
+    },
   },
   title: {
     fontSize: 20,
