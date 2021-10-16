@@ -1,6 +1,6 @@
 import axios from "axios";
+import moment from 'moment'
 import socket from "../../socket";
-import { getSortedMessages } from "../../utils/constants";
 import { gotConversations, addConversation, setNewMessage, setSearchedUsers } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
@@ -122,4 +122,13 @@ export const searchUsers = (searchTerm) => async(dispatch) => {
     } catch (error) {
         console.error(error);
     }
+};
+
+
+export const getSortedMessages = (messages) => {
+    if (!Array.isArray(messages) || messages.length === 0) return messages;
+
+    return messages.sort((prev, next) => {
+        return moment.utc(prev.createdAt).diff(next.createdAt);
+    });
 };
