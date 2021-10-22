@@ -1,0 +1,1 @@
+export const CLOUDINARY_PUBLIC_URL = "https://api.cloudinary.com/v1_1/oluwaleyevictor/image/upload";
