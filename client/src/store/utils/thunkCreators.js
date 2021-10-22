@@ -1,12 +1,12 @@
 import axios from "axios";
-import moment from 'moment'
 import socket from "../../socket";
+import { CLOUDINARY_PUBLIC_URL } from "../../utils/constants";
 import { gotConversations, addConversation, setNewMessage, setSearchedUsers } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
 axios.interceptors.request.use(async function(config) {
     const token = await localStorage.getItem("messenger-token");
-    config.headers["x-access-token"] = token;
+    if (config.url !== CLOUDINARY_PUBLIC_URL) config.headers["x-access-token"] = token;
 
     return config;
 });
@@ -63,22 +63,12 @@ export const logout = (id) => async(dispatch) => {
     }
 };
 
-const getSortedConversations = (coversations) => {
-    return coversations.map((data) => {
-        const newData = {...data };
-        if (newData.messages && newData.messages.length > 0) {
-            newData.messages = getSortedMessages(newData.messages);
-        }
-        return newData;
-    });
-};
-
 // CONVERSATIONS THUNK CREATORS
 export const fetchConversations = () => async(dispatch) => {
     try {
         const { data } = await axios.get("/api/conversations");
-        const sortData = getSortedConversations(data);
-        dispatch(gotConversations(sortData));
+        // const sortData = getSortedConversations(data);
+        dispatch(gotConversations(data));
     } catch (error) {
         console.error(error);
     }
@@ -124,11 +114,15 @@ export const searchUsers = (searchTerm) => async(dispatch) => {
     }
 };
 
-
-export const getSortedMessages = (messages) => {
-    if (!Array.isArray(messages) || messages.length === 0) return messages;
-
-    return messages.sort((prev, next) => {
-        return moment.utc(prev.createdAt).diff(next.createdAt);
-    });
+export const uploadImage = async(formData) => {
+    try {
+        const { data } = await axios({
+            url: CLOUDINARY_PUBLIC_URL,
+            method: "POST",
+            data: formData,
+        });
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };
