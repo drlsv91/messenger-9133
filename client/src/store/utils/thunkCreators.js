@@ -116,13 +116,9 @@ export const searchUsers = (searchTerm) => async(dispatch) => {
 
 export const uploadImage = async(formData) => {
     try {
-        const { data } = await axios({
-            url: CLOUDINARY_PUBLIC_URL,
-            method: "POST",
-            data: formData,
-        });
+        const { data } = await axios.post(CLOUDINARY_PUBLIC_URL, formData);
         return data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
