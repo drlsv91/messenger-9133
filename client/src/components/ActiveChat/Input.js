@@ -12,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { postMessage, uploadImage } from "../../store/utils/thunkCreators";
 import { Add, FileCopy } from "@material-ui/icons";
+import { FormControl, FilledInput } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { postMessage } from "../../store/utils/thunkCreators";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -42,6 +46,7 @@ const useStyles = makeStyles(() => ({
   addBtn: {
     width: "50px !important",
     height: "50px !important",
+    marginTop: 15
   },
   input: {
     height: "100%",
@@ -70,6 +75,8 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
     transform: "translateY(-50%)",
   },
+    marginBottom: 20
+  }
 }));
 
 const renderAttachment = (icon, onChange, disabled) => (
@@ -85,14 +92,12 @@ const canShowAttachButton = (images = []) => {
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
-  const [imagesUrl, setImagesUrl] = useState([]);
-  const [uploading, setUploading] = useState(false);
   const { postMessage, otherUser, conversationId, user } = props;
 
   const handleChange = (event) => {
     setText(event.target.value);
   };
-
+  
   const doImageUpload = async (formData) => {
     try {
       setUploading(true);
@@ -123,8 +128,8 @@ const Input = (props) => {
       conversationId,
       sender: conversationId ? null : user,
       attachments: imagesUrl,
+      sender: conversationId ? null : user
     };
-
     await postMessage(reqBody);
     setImagesUrl([]);
     setText("");
@@ -133,6 +138,7 @@ const Input = (props) => {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel className={classes.formControl}>
+      <FormControl fullWidth hiddenLabel>
         <FilledInput
           classes={{ root: classes.input }}
           disableUnderline
@@ -151,6 +157,7 @@ const Input = (props) => {
             <CircularProgress color="secondary" />
           </Box>
         )}
+
       </FormControl>
 
       {imagesUrl.length > 0 && (
