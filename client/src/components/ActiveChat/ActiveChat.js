@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexGrow: 8,
     flexDirection: "column",
+    "@media (min-width:768px)": {
+      width: "100%",
+    },
   },
   chatContainer: {
     marginLeft: 41,
@@ -20,13 +23,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const getActiveConversation = (conversations, activeConversation)=>{
-  return conversations.find((conversation) => conversation.otherUser.username === activeConversation) || {}
-}
+const getActiveConversation = (conversations, activeConversation) => {
+  return conversations.find((conversation) => conversation.otherUser.username === activeConversation) || {};
+};
 const ActiveChat = (props) => {
   const classes = useStyles();
   const { user } = props;
-  const conversation = getActiveConversation(props.conversations, props.activeConversation)
+  const conversation = getActiveConversation(props.conversations, props.activeConversation);
   return (
     <Box className={classes.root}>
       {conversation.otherUser && (
@@ -46,8 +49,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     conversations: state.conversations,
-    activeConversation:state.activeConversation
-   
+    activeConversation: state.activeConversation,
   };
 };
 

@@ -10,8 +10,11 @@ import { clearOnLogout } from "../store/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh"
-  }
+    height: "100vh",
+    "@media (min-width:768px)": {
+      flexWrap: "nowrap",
+    },
+  },
 }));
 
 const Home = (props) => {
@@ -57,7 +60,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    conversations: state.conversations
+    conversations: state.conversations,
   };
 };
 
@@ -69,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchConversations: () => {
       dispatch(fetchConversations());
-    }
+    },
   };
 };
 
